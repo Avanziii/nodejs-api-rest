@@ -1,0 +1,10 @@
+express -> lib para inicializar servidor e trabalhar na parte de rotas.
+Nodemon -> atualizar servidor conforme mudanças são realizadas no arquivo.
+
+npm install --save-dev nodemon   -> parametro para facilitar apenas em ambiente de producao
+
+consign -> lib para agrupar rotas
+body-parser -> lib para entender o corpo de uma requisição enviada
+mysql -> lib banco de dados
+
+curl vs postman
