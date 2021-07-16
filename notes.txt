@@ -6,5 +6,6 @@ npm install --save-dev nodemon   -> parametro para facilitar apenas em ambiente 
 consign -> lib para agrupar rotas
 body-parser -> lib para entender o corpo de uma requisição enviada
 mysql -> lib banco de dados
+moment -> lib para trabalhar com datas
 
 curl vs postman
