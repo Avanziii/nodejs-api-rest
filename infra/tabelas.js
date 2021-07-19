@@ -3,6 +3,7 @@ class Tabelas {
     this.conexao = conexao
 
     this.criarAtendimentos()
+    this.criarPets()
   }
 
   criarAtendimentos() {
@@ -16,6 +17,21 @@ class Tabelas {
       } else {
         console.log('tabela atendimentos criada com sucesso')
       }
+    })
+  }
+
+  criarPets() {
+
+    /* Coluna imagem ira armazenar o caminho referente onde a imagem realmente está armazenada */
+    const sql = 'CREATE TABLE IF NOT EXISTS Pets (id int NOT NULL AUTO_INCREMENT, nome varchar(50), imagem varchar(200), PRIMARY KEY (id))'
+
+    this.conexao.query(sql, erro => {
+        if(erro){
+            console.log(erro)
+        } else {
+            console.log('tabela pets criada com sucesso')
+        }
+        
     })
   }
 }

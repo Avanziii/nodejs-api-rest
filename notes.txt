@@ -9,3 +9,10 @@ mysql -> lib banco de dados
 moment -> lib para trabalhar com datas
 
 curl vs postman
+
+LIB sistema de file system (FS).
+LIB path
+
+Buffer le o arquivo todo antes de continuar o fluxo.
+Stream le os arquivos graduamente e segue o fluxo graduamente também.
+Event Loop do Javascript
