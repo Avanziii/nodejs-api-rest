@@ -1,4 +1,5 @@
 const moment = require("moment");
+const axios = require('axios')
 const atendimentos = require("../controllers/atendimentos");
 const conexao = require("../infra/conexao");
 
@@ -60,46 +61,53 @@ class Atendimentos {
   }
 
   buscaPorId(id, res) {
-    const sql = `SELECT * FROM Atendimentos WHERE id =${id}`
+    const sql = `SELECT * FROM Atendimentos WHERE id =${id}`;
 
-    conexao.query(sql, (erro, resultado) => {
-      const atendimento = resultado[0]
+    conexao.query(sql, async (erro, resultado) => {
+      const atendimento = resultado[0];
+      const cpf = atendimento.cliente
+
       if (erro) {
-        res.status(400).json(erro)
+        res.status(400).json(erro);
       } else {
-        res.status(200).json(atendimento)
+        const {data} = await axios.get(`http://localhost:8082/${cpf}`)
+
+        atendimento.cliente = data
+
+        res.status(200).json(atendimento);
       }
     });
   }
 
-  alterar(id, valores, res){
+  alterar(id, valores, res) {
     if (valores.data) {
-        valores.data = moment(valores.data, "DD/MM/YYYY").format("YYYY-MM-DD HH:mm:ss")
+      valores.data = moment(valores.data, "DD/MM/YYYY").format(
+        "YYYY-MM-DD HH:mm:ss"
+      );
     }
 
-    const sql = 'UPDATE Atendimentos SET ? WHERE ID=?'
+    const sql = "UPDATE Atendimentos SET ? WHERE ID=?";
 
     conexao.query(sql, [valores, id], (erro, resultado) => {
-        if (erro) {
-            res.status(400).json(erro)
-        } else {
-            res.status(200).json({...valores, id})
-        }
-    })
+      if (erro) {
+        res.status(400).json(erro);
+      } else {
+        res.status(200).json({ ...valores, id });
+      }
+    });
   }
 
   remover(id, res) {
-      const sql = `DELETE FROM Atendimentos WHERE id=${id}`
+    const sql = `DELETE FROM Atendimentos WHERE id=${id}`;
 
-      conexao.query(sql, (erro, resultado) => {
-          if(erro){
-            res.status(400).json(erro)
-          } else {
-            res.status(200).json({id})
-          }
-      })
+    conexao.query(sql, (erro, resultado) => {
+      if (erro) {
+        res.status(400).json(erro);
+      } else {
+        res.status(200).json({ id });
+      }
+    });
   }
 }
-
 
 module.exports = new Atendimentos();
