@@ -30,8 +30,8 @@ Repositorios -> Camada de dados, repsonsável por lidar com os dados.
 -----
 PROMISSES?? -> É isso mesmo! Promise é uma das formas de trabalhar de forma assíncrona que o Javascript nos proporciona para trabalharmos, principalmente, com requisições.
 Exemplo do RH!
-Promisse .then
-Promisse.catch
+Promisse .then -> pode ser passado no intermedio até chegar a querm deu inicio a requisição.
+Promisse.catch -> ele só entra na resposta final
 
 PASTA Repositories*
 Ter querys sql no código de uma service isso torna um código grande e ilegível, por isso atribuimos aos repositories o trabalho de ser uma camada de acesso e interação com as entidades do banco de dados.
